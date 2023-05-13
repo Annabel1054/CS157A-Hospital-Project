@@ -3,18 +3,10 @@ package com.example.hospital.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.hospital.model.Doctor;
@@ -157,7 +149,7 @@ public class HospitalController {
     public String registerPrescription(@Valid @ModelAttribute("prescriptionCommand") PrescriptionCommand pc) {
         System.out.println(pc);
         Prescription prescription = new Prescription();
-        
+
         Medicine m = medicineRepository.findByMedicineId(pc.getMedicineId());
         System.out.println("Medicine after retrieval: " + m);
         System.out.println("Medicine name: " + m.getName());
@@ -192,18 +184,17 @@ public class HospitalController {
             System.out.println("Medicine id of prescription " + p.getPrescriptionId() + " : " + mp.getMedicineId());
             Medicine m = medicineRepository.findByMedicineId(mp.getMedicineId());
             PrescriptionCommand pc = new PrescriptionCommand(
-                p.getPrescriptionId(),
-                m.getMedicineId(),
-                m.getName(),
-                m.getCost(),
-                m.getDescription(),
-                p.getQuantity(),
-                p.getIntake(),
-                p.getFrequency(),
-                p.getDate(),
-                p.getDoctorId(),
-                p.getPatientId()
-            );
+                    p.getPrescriptionId(),
+                    m.getMedicineId(),
+                    m.getName(),
+                    m.getCost(),
+                    m.getDescription(),
+                    p.getQuantity(),
+                    p.getIntake(),
+                    p.getFrequency(),
+                    p.getDate(),
+                    p.getDoctorId(),
+                    p.getPatientId());
             pcList.add(pc);
         }
 
