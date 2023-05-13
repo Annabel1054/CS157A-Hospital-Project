@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Nurse Employee Form</title>
+    <title>Appointment Form</title>
     <link th:href="@{/styles.css}" rel="stylesheet" />
   </head>
   <body>
@@ -36,45 +36,79 @@
             </div>
         </div>
     </div>
-      <div class="doctor-form">
-        <form th:action="@{/nurse}" th:object="${nurse}" method="post">
-          <h3>Nurse Employee Form</h3>
-          <label for="firstName">First Name</label>
+      <div class="patient-form">
+        <form th:action="@{/appointment}" th:object="${appointment}" method="post">
+          <h3>Appointment Form</h3>
+          <label for="doctorId">Doctor Id</label>
           <input
             type="text"
-            id="firstName"
-            th:field="*{firstName}"
-            placeholder="Enter First Name"
+            id="doctorId"
+            th:field="*{doctorId}"
+            placeholder="Enter Doctor Id"
           />
           <br /><br />
-          <label for="lastName">Last Name</label>
+          <label for="patientId">Patient Id</label>
           <input
             type="text"
-            id="lName"
-            th:field="*{lastName}"
-            placeholder="Enter Last Name"
+            id="patientId"
+            th:field="*{patientId}"
+            placeholder="Enter Patient Id"
           />
           <br /><br />
-         <label for="phoneNumber">Phone Number</label>
+         <label for="department">Department</label>
           <input
             type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            th:field="*{phoneNumber}"
-            placeholder="Enter Phone Number"
+            id="department"
+            name="department"
+            th:field="*{department}"
+            placeholder="Enter Department"
           />
           <br /><br />
-          <label for="email">Email</label>
+          <label for="room">Room</label>
           <input
             type="text"
-            id="email"
-            name="email"
-            th:field="*{email}"
-            placeholder="Enter Email"
+            id="room"
+            name="room"
+            th:field="*{room}"
+            placeholder="Enter Room"
           />
           <br /><br />
+          <label for="time">Time</label>
+          <input
+            type="text"
+            id="time"
+            name="time"
+            th:field="*{time}"
+            placeholder="Enter Time (XX:XX)"
+          />
           <br /><br />
-          <br /><br />
+          <label for="day">Date</label>
+          <input
+            type="text"
+            id="daye"
+            name="date"
+            th:field="*{date}"
+            placeholder="Enter Date (Ex: MM-DD-YYYY)"
+          />
+          <br/><br/>
+          <label for="type">Type</label>
+          <input
+            type="text"
+            id="type"
+            name="type"
+            th:field="*{type}"
+            placeholder="Enter Type"
+          />
+         <br/><br/>
+          <label for="cost">Cost</label>
+          <input
+            type="text"
+            id="cost"
+            name="cost"
+            th:field="*{cost}"
+            placeholder="Enter Cost"
+          />
+          <br/><br/>
           <div class="group">
             <input type="submit" class="button" value="Submit Form" /></a>
           </div>

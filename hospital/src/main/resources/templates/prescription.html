@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Prescription Form</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <li class="store-header">Hospital Admin Console</li>
+        <!-- <a href="/">Home</a> -->
+        <div class="dropdown">
+            <button class="dropbtn">
+                Forms
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="/patient">Patient Registration</a>
+              <a href="/nurse">Nurse Registration</a>
+              <a href="/doctor">Doctor Registration</a>
+              <a href="/prescription">Prescription Form</a>
+              <a href="/appointment">Appointment Form</a>
+            </div>
+          </div>
+          <div class="dropdown">
+              <button class="dropbtn">
+                  Display Information
+                  <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="/allPatients">View All Patients</a>
+                <a href="/allNurses">View All Nurses</a>
+                <a href="/allDoctors">View All Doctors</a>
+                <a href="/allPrescriptions">View All Prescriptions</a>
+                <a href="/allAppointments">View All Appointments</a>
+              </div>
+          </div>
+    </div>
+      <div class="patient-form">
+        <form th:action="@{/prescription}" th:object="${prescription}" method="post">
+          <h3>Prescription Form</h3>
+          <label for="name">Medication Name</label>
+          <input
+            type="text"
+            id="name"
+            th:field="*{name}"
+            placeholder="Enter Medicine Name"
+          />
+          <br /><br />
+          <label for="quantity">Quantity</label>
+          <input
+            type="text"
+            id="quantity"
+            th:field="*{quantity}"
+            placeholder="Enter Quantity"
+          />
+          <br /><br />
+         <label for="intake">Intake</label>
+          <input
+            type="text"
+            id="intake"
+            name="intake"
+            th:field="*{intake}"
+            placeholder="Enter Intake"
+          />
+          <br /><br />
+          <label for="frequency">Frequency</label>
+          <input
+            type="text"
+            id="frequency"
+            name="frequency"
+            th:field="*{frequency}"
+            placeholder="Enter Frequency"
+          />
+          <br /><br />
+          <label for="date">Date</label>
+          <input
+            type="text"
+            id="date"
+            name="date"
+            th:field="*{date}"
+            placeholder="Enter Date (Ex: MM-DD-YYYY)"
+          />
+         <br /><br />
+          <label for="doctorId">Doctor Id</label>
+          <input
+            type="text"
+            id="doctorId"
+            name="doctorId"
+            th:field="*{doctorId}"
+            placeholder="Enter Doctor Id"
+          />
+         <br/><br/>
+          <label for="patientId">Patient Id</label>
+          <input
+            type="text"
+            id="patientId"
+            name="patientId"
+            th:field="*{patientId}"
+            placeholder="Enter Patient Id"
+          />
+          <br/><br/>
+          <div class="group">
+            <input type="submit" class="button" value="Submit Form" /></a>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

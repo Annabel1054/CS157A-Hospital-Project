@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Appointment Table</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <li class="store-header">Hospital Admin Console</li>
+        <!-- <a href="/">Home</a> -->
+        <div class="dropdown">
+            <button class="dropbtn">
+                Forms
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="/patient">Patient Registration</a>
+              <a href="/nurse">Nurse Registration</a>
+              <a href="/doctor">Doctor Registration</a>
+              <a href="/prescription">Prescription Form</a>
+              <a href="/appointment">Appointment Form</a>
+            </div>
+          </div>
+          <div class="dropdown">
+              <button class="dropbtn">
+                  Display Information
+                  <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="/allPatients">View All Patients</a>
+                <a href="/allNurses">View All Nurses</a>
+                <a href="/allDoctors">View All Doctors</a>
+                <a href="/allPrescriptions">View All Prescriptions</a>
+                <a href="/allAppointments">View All Appointments</a>
+              </div>
+          </div>
+    </div>
+    <div class="doctor-table">
+        <h3 style="text-align:center;">List of Appointments</h3>
+        <div th:if="${ not#lists.isEmpty(appointmentList)}">
+          <table>
+            <tr>
+              <th>Appointment Id</th>
+              <th>Doctor Id</th>
+              <th>Patient Id</th>
+              <th>Department</th>
+              <th>Room</th>
+              <th>Time</th>
+              <th>Date</th>
+              <th>Type</th>
+            <th>Cost</th>
+            </tr>
+            <tr th:each="appointment : ${appointmentList}">
+              <td th:text="${appointment.appointmentId}"></td>
+              <td th:text="${appointment.doctorId}"></td>
+              <td th:text="${appointment.patientId}"></td>
+              <td th:text="${appointment.department}"></td>
+              <td th:text="${appointment.room}"></td>
+              <td th:text="${appointment.time}"></td>
+              <td th:text="${appointment.date}"></td>
+              <td th:text="${appointment.type}"></td>
+              <td th:text="${appointment.cost}"></td>
+            </tr>
+          <table>
+        </div>
+    </div>
+  </body>
+</html>
