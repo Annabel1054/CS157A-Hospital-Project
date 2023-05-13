@@ -37,15 +37,13 @@
           </div>
     </div>
       <div class="patient-form">
-        <form th:action="@{/prescription}" th:object="${prescription}" method="post">
+        <form th:action="@{/prescription}" th:object="${prescriptionCommand}" method="post">
           <h3>Prescription Form</h3>
-          <label for="name">Medication Name</label>
-          <input
-            type="text"
-            id="name"
-            th:field="*{name}"
-            placeholder="Enter Medicine Name"
-          />
+          <label for="medicine">Medication</label>
+          <br /><br />
+          <select th:field="*{medicineId}" id="medicine">
+            <option th:each="m : ${medicineOptions}" th:value="${m.medicineId}" th:text="${m.name}"></option>
+          </select>
           <br /><br />
           <label for="quantity">Quantity</label>
           <input

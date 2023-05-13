@@ -7,14 +7,14 @@ import lombok.Data;
 // Source on creating composite keys: https://www.baeldung.com/jpa-composite-primary-keys
 
 @Data
-public class MedicinePrescription implements Serializable {
+public class MedicinePrescriptionPK implements Serializable {
     private int medicineId;
     private int prescriptionId;
 
-    public MedicinePrescription() {
+    public MedicinePrescriptionPK() {
     }
 
-    public MedicinePrescription(int medicineId, int prescriptionId) {
+    public MedicinePrescriptionPK(int medicineId, int prescriptionId) {
         this.medicineId = medicineId;
         this.prescriptionId = prescriptionId;
     }

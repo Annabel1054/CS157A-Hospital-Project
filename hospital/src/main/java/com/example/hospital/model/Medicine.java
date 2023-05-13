@@ -1,13 +1,10 @@
 package com.example.hospital.model;
 
-// public class Medicine {
-
-// }
-
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Index;
 import javax.persistence.Table;
@@ -18,6 +15,7 @@ import javax.persistence.Table;
 @RequiredArgsConstructor
 public class Medicine {
 
+    @Id
     @Column(nullable = false)
     private Integer medicineId;
     @Column(nullable = false)
