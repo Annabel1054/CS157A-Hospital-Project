@@ -43,7 +43,9 @@
             <tr>
               <th>Prescription Id</th>
               <th>Medicine Name</th>
-              <th>Quantitye</th>
+              <th>Cost</th>
+              <th>Description</th>
+              <th>Quantity</th>
               <th>Intake</th>
               <th>Frequency</th>
               <th>Date</th>
@@ -53,6 +55,8 @@
             <tr th:each="prescription : ${prescriptionList}">
               <td th:text="${prescription.prescriptionId}"></td>
               <td th:text="${prescription.name}"></td>
+              <td th:text="${prescription.cost}"></td>
+              <td th:text="${prescription.description}"></td>
               <td th:text="${prescription.quantity}"></td>
               <td th:text="${prescription.intake}"></td>
               <td th:text="${prescription.frequency}"></td>

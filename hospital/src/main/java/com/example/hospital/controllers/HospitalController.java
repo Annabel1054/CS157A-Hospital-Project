@@ -19,12 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.hospital.model.Doctor;
 import com.example.hospital.model.DoctorCommand;
+import com.example.hospital.model.Medicine;
+import com.example.hospital.model.MedicinePrescription;
 import com.example.hospital.model.Nurse;
 import com.example.hospital.model.Patient;
 import com.example.hospital.model.Specialization;
 import com.example.hospital.model.Prescription;
+import com.example.hospital.model.PrescriptionCommand;
 import com.example.hospital.model.Appointment;
 import com.example.hospital.repository.DoctorRepository;
+import com.example.hospital.repository.MedicinePrescriptionRepository;
+import com.example.hospital.repository.MedicineRepository;
 import com.example.hospital.repository.NurseRepository;
 import com.example.hospital.repository.PatientRepository;
 import com.example.hospital.repository.SpecializationRepository;
@@ -35,7 +40,7 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UsersController {
+public class HospitalController {
     @Autowired
     private DoctorRepository doctorRepository;
     @Autowired
@@ -48,6 +53,10 @@ public class UsersController {
     private PrescriptionRepository prescriptionRepository;
     @Autowired
     private AppointmentRepository appointmentRepository;
+    @Autowired
+    private MedicineRepository medicineRepository;
+    @Autowired
+    private MedicinePrescriptionRepository medicinePrescriptionRepository;
 
     @RequestMapping(value = { "/doctor" }, method = RequestMethod.GET)
     public String showDoctorForm(Model model) {
@@ -137,22 +146,68 @@ public class UsersController {
 
     @RequestMapping(value = { "/prescription" }, method = RequestMethod.GET)
     public String showPrescriptionForm(Model model) {
-        Prescription prescription = new Prescription();
-        model.addAttribute("prescription", prescription);
+        PrescriptionCommand prescriptionCommand = new PrescriptionCommand();
+        model.addAttribute("prescriptionCommand", prescriptionCommand);
+        List<Medicine> medicineOptions = medicineRepository.findAll();
+        model.addAttribute("medicineOptions", medicineOptions);
         return "prescription";
     }
 
     @RequestMapping(value = { "/prescription" }, method = RequestMethod.POST)
-    public String registerPrescription(@Valid @ModelAttribute("prescription") Prescription prescription) {
+    public String registerPrescription(@Valid @ModelAttribute("prescriptionCommand") PrescriptionCommand pc) {
+        System.out.println(pc);
+        Prescription prescription = new Prescription();
+        
+        Medicine m = medicineRepository.findByMedicineId(pc.getMedicineId());
+        System.out.println("Medicine after retrieval: " + m);
+        System.out.println("Medicine name: " + m.getName());
+        prescription.setName(m.getName());
+        prescription.setDate(pc.getDate());
+        prescription.setDoctorId(pc.getDoctorId());
+        prescription.setFrequency(pc.getFrequency());
+        prescription.setIntake(pc.getIntake());
+        prescription.setPatientId(pc.getPatientId());
+        prescription.setQuantity(pc.getQuantity());
         System.out.println(prescription);
-        prescriptionRepository.save(prescription);
+        Prescription p = prescriptionRepository.saveAndFlush(prescription);
+        System.out.println("Prescription after insert: " + p);
+
+        MedicinePrescription mp = new MedicinePrescription();
+        mp.setMedicineId(pc.getMedicineId());
+        mp.setPrescriptionId(p.getPrescriptionId());
+        medicinePrescriptionRepository.save(mp);
 
         return "prescriptionTable";
     }
 
     @RequestMapping(value = { "/allPrescriptions" }, method = RequestMethod.GET)
     public String showPrescriptionTable(Model model) {
-        model.addAttribute("prescriptionList", prescriptionRepository.findAll());
+        List<PrescriptionCommand> pcList = new ArrayList<PrescriptionCommand>();
+        List<Prescription> prescriptionList = prescriptionRepository.findAll();
+
+        System.out.println(prescriptionList);
+
+        for (Prescription p : prescriptionList) {
+            MedicinePrescription mp = medicinePrescriptionRepository.findByPrescriptionId(p.getPrescriptionId());
+            System.out.println("Medicine id of prescription " + p.getPrescriptionId() + " : " + mp.getMedicineId());
+            Medicine m = medicineRepository.findByMedicineId(mp.getMedicineId());
+            PrescriptionCommand pc = new PrescriptionCommand(
+                p.getPrescriptionId(),
+                m.getMedicineId(),
+                m.getName(),
+                m.getCost(),
+                m.getDescription(),
+                p.getQuantity(),
+                p.getIntake(),
+                p.getFrequency(),
+                p.getDate(),
+                p.getDoctorId(),
+                p.getPatientId()
+            );
+            pcList.add(pc);
+        }
+
+        model.addAttribute("prescriptionList", pcList);
         return "prescriptionTable";
     }
 
