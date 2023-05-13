@@ -1,0 +1,193 @@
+/* Navigation bar CSS: https://www.w3schools.com/css/tryit.asp?filename=trycss_navbar_horizontal_black_fixed */
+
+body {
+  margin: 0;
+  font-family: arial, sans-serif;
+  height: 100vh;
+  background-color: #1b1b1b;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.store-header {
+  background-color: #04aa6d;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04aa6d;
+}
+
+.doctor-form {
+  margin: auto;
+  width: 60%;
+  padding: 20px;
+  margin-top: 4%;
+  background-color: rgb(196, 180, 162);
+  color: #ffffff;
+}
+
+.doctor-table {
+  margin: auto;
+  width: 60%;
+  padding: 20px;
+  margin-top: 4%;
+  background-color: rgb(196, 180, 162);
+  color: #ffffff;
+  align-items: center;
+}
+
+th {
+  padding-right: 20px;
+}
+
+td {
+  padding-right: 20px;
+}
+
+table {
+  margin: auto;
+}
+
+.patient-form {
+  margin: auto;
+  width: 60%;
+  padding: 20px;
+  margin-top: 2%;
+  background-color: rgb(196, 180, 162);
+  color: #ffffff;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type="button"],
+input[type="submit"] {
+  background-color: #04aa6d;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* Split Screen: https://codepen.io/sturner/pen/bwYMpM */
+
+/* .parent {
+  display: flex;
+}
+
+.item {
+  width: 50%;
+  padding: 2em;
+  color: #ffffff;
+  background: #d6cece;
+  height: 100vh;
+}
+
+.last {
+  color: #222;
+  background: #d6cece;
+} */
+
+/* Dropdown style code taken from: https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp */
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}

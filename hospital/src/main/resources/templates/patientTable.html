@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Patient Table</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <li class="store-header">Hospital Admin Console</li>
+        <!-- <a href="/">Home</a> -->
+        <div class="dropdown">
+            <button class="dropbtn">
+                Forms
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+            <a href="/patient">Patient Registration</a>
+            <a href="/nurse">Nurse Registration</a>
+            <a href="/doctor">Doctor Registration</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                Display Information
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+            <a href="/allPatients">View All Patients</a>
+            <a href="/allNurses">View All Nurses</a>
+            <a href="/allDoctors">View All Doctors</a>
+            </div>
+        </div>
+    </div>
+    <div class="doctor-table">
+        <h3 style="text-align:center;">List of Patients</h3>
+        <div th:if="${ not#lists.isEmpty(patientList)}">
+          <table>
+            <tr>
+              <th>Patient Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Gender</th>
+              <th>Date of Birth</th>
+            <th>Social Security Number</th>
+            </tr>
+            <tr th:each="patient : ${patientList}">
+              <td th:text="${patient.patientId}"></td>
+              <td th:text="${patient.firstName}"></td>
+              <td th:text="${patient.lastName}"></td>
+              <td th:text="${patient.phoneNumber}"></td>
+              <td th:text="${patient.email}"></td>
+              <td th:text="${patient.address}"></td>
+              <td th:text="${patient.gender}"></td>
+              <td th:text="Confidential"></td>
+              <td th:text="Confidential"></td>
+            </tr>
+          <table>
+        </div>
+    </div>
+  </body>
+</html>
