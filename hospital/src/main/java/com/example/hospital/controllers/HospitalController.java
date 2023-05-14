@@ -54,6 +54,7 @@ public class HospitalController {
     private MedicineRepository medicineRepository;
     @Autowired
     private MedicinePrescriptionRepository medicinePrescriptionRepository;
+    @Autowired
     private BillingRepository billingRepository;
     @Autowired
     private CreditCardRepository creditCardRepository;
@@ -241,10 +242,12 @@ public class HospitalController {
     @RequestMapping(value = { "/payment" }, method = RequestMethod.POST)
     public String registerPayment(@Valid @ModelAttribute("paymentCommand") PaymentCommand pc) {
         Billing billing = new Billing();
+        System.out.println(pc);
         billing.setPatientId(pc.getPatientId());
         billing.setDate(pc.getDate());
         billing.setAmount(pc.getAmount());
         billing.setCreditCardNumber(pc.getCreditCardNumber());
+        System.out.println(billing);
         billingRepository.save(billing);
         System.out.println(pc);
         // Billing b = billingRepository.saveAndFlush(billing);
@@ -256,6 +259,7 @@ public class HospitalController {
         c.setFirstName(pc.getFirstName());
         c.setLastName(pc.getLastName());
         c.setSecurityCode(pc.getSecurityCode());
+        System.out.println(c);
         creditCardRepository.save(c);
 
         return "billingTable";

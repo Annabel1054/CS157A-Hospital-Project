@@ -1,123 +1,123 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Payment Form</title>
-    <link th:href="@{/styles.css}" rel="stylesheet" />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <div class="navbar">
-        <li class="store-header">Hospital Admin Console</li>
-        <!-- <a href="/">Home</a> -->
-        <div class="dropdown">
-          <button class="dropbtn">
-              Forms
-              <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="/patient">Patient Registration</a>
-            <a href="/nurse">Nurse Registration</a>
-            <a href="/doctor">Doctor Registration</a>
-            <a href="/prescription">Prescription Form</a>
-            <a href="/appointment">Appointment Form</a>
-            <a href="/payment">Payment Form</a>
-          </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">
-                Display Information
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="/allPatients">View All Patients</a>
-              <a href="/allNurses">View All Nurses</a>
-              <a href="/allDoctors">View All Doctors</a>
-              <a href="/allPrescriptions">View All Prescriptions</a>
-              <a href="/allAppointments">View All Appointments</a>
-              <a href="/allBillings">View All Billings</a>
-            </div>
-        </div>
-    </div>
-      <div class="patient-form">
-        <form th:action="@{/payment}" th:object="${paymentCommand}" method="post">
-          <h3>Payment Form</h3>
-          <label for="patientId">Patient Id</label>
-          <input
-            type="text"
-            id="patientId"
-            th:field="*{patientId}"
-            placeholder="Enter Patient Id"
-          />
-          <br /><br />
-         <label for="date">Date</label>
-          <input
-            type="text"
-            id="date"
-            name="date"
-            th:field="*{date}"
-            placeholder="Enter Date (MM-DD-YYYY)"
-          />
-          <br /><br />
-          <label for="amount">Amount</label>
-          <input
-            type="text"
-            id="amount"
-            name="amount"
-            th:field="*{amount}"
-            placeholder="Enter Amount"
-          />
-          <br /><br />
-          <label for="creditCardNumber">Credit Card Number</label>
-          <input
-            type="text"
-            id="creditCardNumber"
-            name="creditCardNumber"
-            th:field="*{creditCardNumber}"
-            placeholder="Enter Credit Card Number (Ex. 1234123412341234)"
-          />
-          <br /><br />
-          <label for="expirationDate">Expiration Date</label>
-          <input
-            type="text"
-            id="expirationDate"
-            name="expirationDate"
-            th:field="*{expirationDate}"
-            placeholder="Enter Expiration Date (Ex: MM/YY)"
-          />
-          <br/><br/>
-          <label for="firstName">First Name</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            th:field="*{firstName}"
-            placeholder="Enter First Name"
-          />
+ <head>
+   <title>Payment Form</title>
+   <link th:href="@{/styles.css}" rel="stylesheet" />
+ </head>
+ <body>
+   <!-- Navbar -->
+   <div class="navbar">
+       <li class="store-header">Hospital Admin Console</li>
+       <!-- <a href="/">Home</a> -->
+       <div class="dropdown">
+         <button class="dropbtn">
+             Forms
+             <i class="fa fa-caret-down"></i>
+         </button>
+         <div class="dropdown-content">
+           <a href="/patient">Patient Registration</a>
+           <a href="/nurse">Nurse Registration</a>
+           <a href="/doctor">Doctor Registration</a>
+           <a href="/prescription">Prescription Form</a>
+           <a href="/appointment">Appointment Form</a>
+           <a href="/payment">Payment Form</a>
+         </div>
+       </div>
+       <div class="dropdown">
+           <button class="dropbtn">
+               Display Information
+               <i class="fa fa-caret-down"></i>
+           </button>
+           <div class="dropdown-content">
+             <a href="/allPatients">View All Patients</a>
+             <a href="/allNurses">View All Nurses</a>
+             <a href="/allDoctors">View All Doctors</a>
+             <a href="/allPrescriptions">View All Prescriptions</a>
+             <a href="/allAppointments">View All Appointments</a>
+             <a href="/allBillings">View All Billings</a>
+           </div>
+       </div>
+   </div>
+     <div class="patient-form">
+       <form th:action="@{/payment}" th:object="${paymentCommand}" method="post">
+         <h3>Payment Form</h3>
+         <label for="patientId">Patient Id</label>
+         <input
+           type="text"
+           id="patientId"
+           th:field="*{patientId}"
+           placeholder="Enter Patient Id"
+         />
+         <br /><br />
+        <label for="date">Date</label>
+         <input
+           type="text"
+           id="date"
+           name="date"
+           th:field="*{date}"
+           placeholder="Enter Date (MM-DD-YYYY)"
+         />
+         <br /><br />
+         <label for="amount">Amount</label>
+         <input
+           type="text"
+           id="amount"
+           name="amount"
+           th:field="*{amount}"
+           placeholder="Enter Amount"
+         />
+         <br /><br />
+         <label for="creditCardNumber">Credit Card Number</label>
+         <input
+           type="text"
+           id="creditCardNumber"
+           name="creditCardNumber"
+           th:field="*{creditCardNumber}"
+           placeholder="Enter Credit Card Number (Ex. 1234123412341234)"
+         />
+         <br /><br />
+         <label for="expirationDate">Expiration Date</label>
+         <input
+           type="text"
+           id="expirationDate"
+           name="expirationDate"
+           th:field="*{expirationDate}"
+           placeholder="Enter Expiration Date (Ex: MM/YY)"
+         />
          <br/><br/>
-          <label for="lastName">Last Name</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            th:field="*{lastName}"
-            placeholder="Enter Last Name"
-          />
-          <br/><br/>
-          <label for="securityCode">Security Code</label>
-          <input
-            type="text"
-            id="securityCode"
-            name="securityCode"
-            th:field="*{securityCode}"
-            placeholder="Enter Security Code"
-          />
-          <br/><br/>
-          <div class="group">
-            <input type="submit" class="button" value="Submit Form" /></a>
-          </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </body>
+         <label for="firstName">First Name</label>
+         <input
+           type="text"
+           id="firstName"
+           name="firstName"
+           th:field="*{firstName}"
+           placeholder="Enter First Name"
+         />
+        <br/><br/>
+         <label for="lastName">Last Name</label>
+         <input
+           type="text"
+           id="lastName"
+           name="lastName"
+           th:field="*{lastName}"
+           placeholder="Enter Last Name"
+         />
+         <br/><br/>
+         <label for="securityCode">Security Code</label>
+         <input
+           type="text"
+           id="securityCode"
+           name="securityCode"
+           th:field="*{securityCode}"
+           placeholder="Enter Security Code"
+         />
+         <br/><br/>
+         <div class="group">
+           <input type="submit" class="button" value="Submit Form" /></a>
+         </div>
+         </div>
+       </form>
+     </div>
+   </div>
+ </body>
 </html>
