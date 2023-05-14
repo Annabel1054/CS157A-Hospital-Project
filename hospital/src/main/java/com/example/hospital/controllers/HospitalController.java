@@ -19,6 +19,9 @@ import com.example.hospital.model.Specialization;
 import com.example.hospital.model.Prescription;
 import com.example.hospital.model.PrescriptionCommand;
 import com.example.hospital.model.Appointment;
+import com.example.hospital.model.Billing;
+import com.example.hospital.model.CreditCard;
+import com.example.hospital.model.PaymentCommand;
 import com.example.hospital.repository.DoctorRepository;
 import com.example.hospital.repository.MedicinePrescriptionRepository;
 import com.example.hospital.repository.MedicineRepository;
@@ -27,6 +30,8 @@ import com.example.hospital.repository.PatientRepository;
 import com.example.hospital.repository.SpecializationRepository;
 import com.example.hospital.repository.PrescriptionRepository;
 import com.example.hospital.repository.AppointmentRepository;
+import com.example.hospital.repository.BillingRepository;
+import com.example.hospital.repository.CreditCardRepository;
 
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,6 +54,9 @@ public class HospitalController {
     private MedicineRepository medicineRepository;
     @Autowired
     private MedicinePrescriptionRepository medicinePrescriptionRepository;
+    private BillingRepository billingRepository;
+    @Autowired
+    private CreditCardRepository creditCardRepository;
 
     @RequestMapping(value = { "/doctor" }, method = RequestMethod.GET)
     public String showDoctorForm(Model model) {
@@ -221,5 +229,41 @@ public class HospitalController {
     public String showAppointmentTable(Model model) {
         model.addAttribute("appointmentList", appointmentRepository.findAll());
         return "appointmentTable";
+    }
+
+    @RequestMapping(value = { "/payment" }, method = RequestMethod.GET)
+    public String showPaymentForm(Model model) {
+        PaymentCommand pc = new PaymentCommand();
+        model.addAttribute("paymentCommand", pc);
+        return "payment";
+    }
+
+    @RequestMapping(value = { "/payment" }, method = RequestMethod.POST)
+    public String registerPayment(@Valid @ModelAttribute("paymentCommand") PaymentCommand pc) {
+        Billing billing = new Billing();
+        billing.setPatientId(pc.getPatientId());
+        billing.setDate(pc.getDate());
+        billing.setAmount(pc.getAmount());
+        billing.setCreditCardNumber(pc.getCreditCardNumber());
+        billingRepository.save(billing);
+        System.out.println(pc);
+        // Billing b = billingRepository.saveAndFlush(billing);
+        // System.out.println("Billing: " + b);
+
+        CreditCard c = new CreditCard();
+        c.setCreditCardNumber(pc.getCreditCardNumber());
+        c.setExpirationDate(pc.getExpirationDate());
+        c.setFirstName(pc.getFirstName());
+        c.setLastName(pc.getLastName());
+        c.setSecurityCode(pc.getSecurityCode());
+        creditCardRepository.save(c);
+
+        return "billingTable";
+    }
+
+    @RequestMapping(value = { "/allBillings" }, method = RequestMethod.GET)
+    public String showBillingTable(Model model) {
+        model.addAttribute("billingList", billingRepository.findAll());
+        return "billingTable";
     }
 }

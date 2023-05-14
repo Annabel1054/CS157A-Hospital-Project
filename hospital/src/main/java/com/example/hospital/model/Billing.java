@@ -5,25 +5,27 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "creditcard", indexes = @Index(name = "altIndex", columnList = "creditCardNumber", unique = true))
+@Table(name = "billing", indexes = @Index(name = "altIndex", columnList = "billingId", unique = true))
 @Data
 @RequiredArgsConstructor
-public class CreditCard {
+public class Billing {
     @Id
-    private String creditCardNumber;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer billingId;
 
     @Column(nullable = false)
-    private String expirationDate;
+    private String patientId;
     @Column(nullable = false)
-    private String firstName;
+    private String date;
     @Column(nullable = false)
-    private String lastName;
+    private String amount;
     @Column(nullable = false)
-    private String securityCode;
+    private String creditCardNumber;
 }
