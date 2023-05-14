@@ -12,27 +12,20 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "appointment", indexes = @Index(name = "altIndex", columnList = "appointmentId", unique = true))
+@Table(name = "billing", indexes = @Index(name = "altIndex", columnList = "billingId", unique = true))
 @Data
 @RequiredArgsConstructor
-public class Appointment {
+public class Billing {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer appointmentId;
+    private Integer billingId;
+
     @Column(nullable = false)
-    private int doctorId;
-    @Column(nullable = false)
-    private int patientId;
-    @Column(nullable = false)
-    private String department;
-    @Column(nullable = false)
-    private String room;
-    @Column(nullable = false)
-    private String time;
+    private String patientId;
     @Column(nullable = false)
     private String date;
     @Column(nullable = false)
-    private String type;
+    private String amount;
     @Column(nullable = false)
-    private String cost;
+    private String creditCardNumber;
 }

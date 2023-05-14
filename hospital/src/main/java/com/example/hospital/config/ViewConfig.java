@@ -13,10 +13,12 @@ public class ViewConfig implements WebMvcConfigurer {
         registry.addViewController("/doctor").setViewName("doctor");
         registry.addViewController("/prescription").setViewName("prescription");
         registry.addViewController("/appointment").setViewName("appointment");
+        registry.addViewController("/payment").setViewName("payment");
         registry.addViewController("/allDoctors").setViewName("doctorTable");
         registry.addViewController("/allNurses").setViewName("nurseTable");
         registry.addViewController("/allPatients").setViewName("patientTable");
         registry.addViewController("/allAppointments").setViewName("appointmentTable");
+        registry.addViewController("/allBillings").setViewName("billingTable");
     }
 
 }

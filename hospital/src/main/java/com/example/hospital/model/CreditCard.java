@@ -10,16 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 
-@Entity 
-@Table(name = "creditcard", indexes=@Index(name = "altIndex", columnList = "creditCardNumber", unique = true))
+@Entity
+@Table(name = "creditcard", indexes = @Index(name = "altIndex", columnList = "creditCardNumber", unique = true))
 @Data
 @RequiredArgsConstructor
 public class CreditCard {
     @Id
-    private Integer creditCardNumber;
-    
-    @Column(nullable=false)
-    private String expirationDate ;
+    private String creditCardNumber;
+
+    @Column(nullable = false)
+    private String expirationDate;
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
