@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Doctor Employee Form</title>
+    <title>Payment Form</title>
     <link th:href="@{/styles.css}" rel="stylesheet" />
   </head>
   <body>
-
     <!-- Navbar -->
     <div class="navbar">
         <li class="store-header">Hospital Admin Console</li>
@@ -39,54 +38,80 @@
             </div>
         </div>
     </div>
-
-      <div class="doctor-form">
-        <form th:action="@{/doctor}" th:object="${doctorCommand}" method="post">
-          <h3>Doctor Employee Form</h3>
+      <div class="patient-form">
+        <form th:action="@{/payment}" th:object="${paymentCommand}" method="post">
+          <h3>Payment Form</h3>
+          <label for="patientId">Patient Id</label>
+          <input
+            type="text"
+            id="patientId"
+            th:field="*{patientId}"
+            placeholder="Enter Patient Id"
+          />
+          <br /><br />
+         <label for="date">Date</label>
+          <input
+            type="text"
+            id="date"
+            name="date"
+            th:field="*{date}"
+            placeholder="Enter Date (MM-DD-YYYY)"
+          />
+          <br /><br />
+          <label for="amount">Amount</label>
+          <input
+            type="text"
+            id="amount"
+            name="amount"
+            th:field="*{amount}"
+            placeholder="Enter Amount"
+          />
+          <br /><br />
+          <label for="creditCardNumber">Credit Card Number</label>
+          <input
+            type="text"
+            id="creditCardNumber"
+            name="creditCardNumber"
+            th:field="*{creditCardNumber}"
+            placeholder="Enter Credit Card Number (Ex. 1234123412341234)"
+          />
+          <br /><br />
+          <label for="expirationDate">Expiration Date</label>
+          <input
+            type="text"
+            id="expirationDate"
+            name="expirationDate"
+            th:field="*{expirationDate}"
+            placeholder="Enter Expiration Date (Ex: MM/YY)"
+          />
+          <br/><br/>
           <label for="firstName">First Name</label>
           <input
             type="text"
             id="firstName"
+            name="firstName"
             th:field="*{firstName}"
             placeholder="Enter First Name"
           />
-          <br /><br />
+         <br/><br/>
           <label for="lastName">Last Name</label>
           <input
             type="text"
-            id="lName"
+            id="lastName"
+            name="lastName"
             th:field="*{lastName}"
             placeholder="Enter Last Name"
           />
-          <br /><br />
-         <label for="phoneNumber">Phone Number</label>
+          <br/><br/>
+          <label for="securityCode">Security Code</label>
           <input
             type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            th:field="*{phoneNumber}"
-            placeholder="Enter Phone Number"
+            id="securityCode"
+            name="securityCode"
+            th:field="*{securityCode}"
+            placeholder="Enter Security Code"
           />
-          <br /><br />
-          <label for="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            th:field="*{email}"
-            placeholder="Enter Email"
-          />
-          <br /><br />
-          <label for="specialization">Specialization</label>
-          <input
-            type="text"
-            id="specialization"
-            name="specialization"
-            th:field="*{specialization}"
-            placeholder="Enter Specialization"
-          />
-          <br /><br />
-          <br /><br />
+          <br/><br/>
           <div class="group">
             <input type="submit" class="button" value="Submit Form" /></a>
           </div>
